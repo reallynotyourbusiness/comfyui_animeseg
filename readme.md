@@ -2,7 +2,7 @@
 
 This is a custom node for [ComfyUI](https://github.com/comfyanonymous/ComfyUI) that provides anime image segmentation using the ONNX model from the [anime-segmentation](https://github.com/SkyTNT/anime-segmentation) project by SkyTNT.
 
-The node implementation was built based on the gist [SimpleAnimeSeg.py](https://gist.github.com/city96/SimpleAnimeSeg.py) by GitHub user **city96**, adapting and packaging the model for easy use within ComfyUI.
+The node implementation was built based on the gist [SimpleAnimeSeg.py](https://gist.github.com/city96/103c394ef9cf9300aca67d1c2a2d28b5) by GitHub user [**city96**](https://github.com/city96), adapting and packaging the model for easy use within ComfyUI.
 
 ---
 
@@ -35,8 +35,8 @@ The node implementation was built based on the gist [SimpleAnimeSeg.py](https://
 
 ## Credits
 
-- Model and core segmentation approach by [SkyTNT](https://github.com/SkyTNT).
-- Node implementation inspired by the gist [SimpleAnimeSeg.py](https://gist.github.com/city96/...) by **city96**.
+- Model and core segmentation approach by [SkyTNT](https://github.com/SkyTNT/anime-segmentation).
+- Node implementation inspired by the gist [SimpleAnimeSeg.py](https://gist.github.com/city96/103c394ef9cf9300aca67d1c2a2d28b5) by **city96**.
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI) for the UI framework.
 
 ---
