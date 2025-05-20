@@ -1,2 +1,7 @@
 __pycache__/
 *.onnx
+models/
+.gitignore
+__pycache__/
+my-private/
+.vscode/
