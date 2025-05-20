@@ -52,8 +52,8 @@ It uses the original model weights from [dreMaz/AnimeInstanceSegmentation](https
 3. Download the model files:
 
    - [`isnetis.onnx`](https://huggingface.co/skytnt/anime-seg/resolve/main/isnetis.onnx) — used by SimpleAnimeSeg
-   - [`rtmdetl_e60.ckpt`](https://huggingface.co/dreMaz/AnimeInstanceSegmentation) — advanced node detector
-   - [`refine_last.ckpt`](https://huggingface.co/dreMaz/AnimeInstanceSegmentation) — advanced node refiner
+   - [`ranime_segmentor_rtmdet_e60_simplified.onnx`](https://huggingface.co/Faor-Mati/anime-character-segmentation/resolve/main/anime_segmentor_rtmdet_e60_simplified.onnx) — advanced node detector
+   - [`mask_refiner_isnetdis_refine_last_simplified.onnx`](https://huggingface.co/Faor-Mati/anime-character-segmentation/resolve/main/mask_refiner_isnetdis_refine_last_simplified.onnx) — advanced node refiner
 
 4. Place all model files in `comfyui_animeseg/models` (create the folder if it doesn't exist).
 5. In your ComfyUI environment, install the requirements:
