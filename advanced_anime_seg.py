@@ -52,8 +52,31 @@ class AdvancedAnimeSeg:
         self.refine_input = self.refine_session.get_inputs()[0].name
         self.refine_outputs = [o.name for o in self.refine_session.get_outputs()]
 
-    def segment(self, image, threshold=0.3, refine_threshold=0.3, enable_refine=True):
-        src_arr = (image[0] * 255).to(torch.uint8).numpy()
+    def segment(self, image: torch.Tensor, threshold=0.3, refine_threshold=0.3, enable_refine=True):
+        """
+        Segments the input image batch.
+
+        Args:
+            image (torch.Tensor): The input image batch of shape (B, H, W, C).
+            threshold (float): The threshold for the coarse mask.
+            refine_threshold (float): The threshold for the refined mask.
+            enable_refine (bool): Whether to enable the refine mask.
+
+        Returns:
+            (torch.Tensor, torch.Tensor): A tuple containing the refined mask batch and the coarse mask batch.
+        """
+        refined_masks = []
+        coarse_masks = []
+
+        for i in range(image.shape[0]):
+            refined, coarse = self._process_image(image[i], threshold, refine_threshold, enable_refine)
+            refined_masks.append(refined)
+            coarse_masks.append(coarse)
+
+        return (torch.cat(refined_masks, dim=0), torch.cat(coarse_masks, dim=0))
+
+    def _process_image(self, image: torch.Tensor, threshold=0.3, refine_threshold=0.3, enable_refine=True):
+        src_arr = (image * 255).to(torch.uint8).numpy()
         H_orig, W_orig = src_arr.shape[:2]
         src = Image.fromarray(src_arr, 'RGB')
 

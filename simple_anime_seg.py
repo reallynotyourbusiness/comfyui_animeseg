@@ -45,10 +45,23 @@ class AnimeSeg:
         mask_tensor = torch.nn.functional.interpolate(mask_tensor, raw_size, mode="bilinear")
         return mask_tensor.transpose(3,2)
 
-    def segment(self, image):
-        img = Image.fromarray((image[0]*255).to(torch.uint8).numpy(), 'RGB')
-        mask = self.get_mask(img)
-        return (mask,)
+    def segment(self, image: torch.Tensor):
+        """
+        Segments the input image batch.
+
+        Args:
+            image (torch.Tensor): The input image batch of shape (B, H, W, C).
+
+        Returns:
+            (torch.Tensor,): A tuple containing the output mask batch of shape (B, 1, H, W).
+        """
+        masks = []
+        for i in range(image.shape[0]):
+            img = Image.fromarray((image[i] * 255).to(torch.uint8).numpy(), 'RGB')
+            mask = self.get_mask(img)
+            masks.append(mask)
+
+        return (torch.cat(masks, dim=0),)
 
 NODE_CLASS_MAPPINGS = {"SimpleAnimeSeg": AnimeSeg}
 NODE_DISPLAY_NAME_MAPPINGS = {"SimpleAnimeSeg": AnimeSeg.TITLE}
